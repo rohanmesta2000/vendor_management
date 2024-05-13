@@ -28,7 +28,7 @@ public class VendorLoginServiceImpl implements VendorLoginService {
 	@Override
 	public String emailLoginAjax(String email) {
 		System.out.println("invoking emailLoginAjax in VendorLoginServiceImpl");
-		List<VendorEntity> entity = this.repo.FindAllByAjax();
+		List<VendorEntity> entity = this.repo.findAllByAjax();
 		for (VendorEntity entities : entity) {
 			if (entities.getEmail().equals(email)) {
 				System.out.println("Email is Verified");
@@ -52,7 +52,7 @@ public class VendorLoginServiceImpl implements VendorLoginService {
 		System.out.println("mail sent " + emailOTP);
 		this.repo.updatedOtpByEmail(email, otp);
 		if (emailOTP) {
-			return "";
+			return "OTP Sent Successfully";
 		}
 		return null;
 	}
@@ -60,14 +60,23 @@ public class VendorLoginServiceImpl implements VendorLoginService {
 	@Override
 	public String loginOtpAjax(String otp) {
 		System.out.println("invoking loginOtpAjax in VendorLoginServiceImpl");
-		List<VendorEntity> entity = this.repo.FindAllByAjax();
+		List<VendorEntity> entity = this.repo.findAllByAjax();
 		for (VendorEntity entities : entity) {
-			if (entities.getOtp().equals(otp)) {
-				if(entities.getOtpGeneratedTime().plusMinutes(1l).compareTo(LocalDateTime.now())==1) {
+			System.out.println("checking for" + otp + "--" + entities.getOtp());
+
+			if (entities.getOtp() != null) {
+
+				if (entities.getOtpGeneratedTime().plusMinutes(10l).compareTo(LocalDateTime.now()) == 10) {
+					System.out.println("otp generated time" +entities.getOtpGeneratedTime());
+					System.out.println("time check" + LocalDateTime.now());
+					
 					return "otp expired";
+				}	
+
+				if (entities.getOtp().equals(otp)) {
+					return "";
 				}
-				System.out.println("checking for" +otp);
-				return "";
+				System.out.println("checking for" + otp);
 			}
 		}
 		return "OTP Not Matched";

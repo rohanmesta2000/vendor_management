@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.xworkz.vManagement.dto.VendorEntity;
 import com.xworkz.vManagement.repository.VendorRepo;
+import com.xworkz.vManagement.service.AdminLoginService;
 import com.xworkz.vManagement.service.VendorService;
 
 
@@ -20,6 +21,11 @@ public class LoginController {
 	@Autowired
 	private VendorService service;
 	
+	
+	 @Autowired
+	 private AdminLoginService adminservice;
+	 
+	 
 	@Autowired
 	private VendorRepo repo;
 
@@ -32,7 +38,7 @@ public class LoginController {
 	public String loginUsingEmailAndOtp(String email,Model model,HttpSession session) {
 		System.out.println("loginUsingEmailAndOtp");
 		service.findAllByAjaxEmail(email);
-		
+		session.setAttribute("loggedInEmail", email);
 		return "loginSuccess";
 		
 	}

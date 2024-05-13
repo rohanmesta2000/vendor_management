@@ -57,6 +57,10 @@ public class RegistrationController {
 			this.vendorService.sendemail(entity.getEmail());
 			return "registration";
 		}
+		
+		
 	}
+	
+	
 
 }

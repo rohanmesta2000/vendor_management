@@ -13,127 +13,143 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
-	
-	<style >
-	
-	.body{
-	centre}
-	
-	
-	</style>
+
+<style>
+body {
+	text-align: center; /* Center align the content */
+	padding-top: 50px; /* Add space from the top */
+	style ="background-color: #f0f0f0z;
+}
+
+@
+keyframes fadeIn {from { opacity:0;
+	transform: translateY(-20px);
+}
+
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+}
+</style>
 
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-	
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item" style="margin-left: 10px;margin-top: -10px; font-size: large;"><a class="nav-link" href="index.jsp">Home</a></li>
-				<li class="nav-item" style="margin-left: 900px;margin-top: -10px; font-size: large;"><a class="nav-link" href="login.jsp">Login</a></li>
-			</ul>
-		</div>
 
-	
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav">
+			<li class="nav-item"
+				style="margin-left: 10px; margin-top: -10px; font-size: large;"><a
+				class="nav-link" href="index.jsp">Home</a></li>
+			<li class="nav-item"
+				style="margin-left: 900px; margin-top: -10px; font-size: large;"><a
+				class="nav-link" href="login.jsp">Login</a></li>
+		</ul>
+	</div>
+
+
 </nav>
 <body>
-    <center>
-   
+
+
 	<span style='color: Green'>${msg}</span>
 	<span style='color: Red'>${uniqueError}</span>
 
 
-	<form action="vendorManage" class="container" method="post">
+	<form action="vendorManage" class="container" method="post"
+		onsubmit="return validateForm();">
 		<div class="design">
-			<label for="name" style="margin-left: -15%">Name</label><br> 
-			<input type="text"
+			<label for="name">Name</label><br> <input type="text"
 				name="name" id="name" placeholder="Enter name"
 				value="${entity.name}">
 		</div>
 		<br>
 		<div class="design">
-			<label for="location" style="margin-left: -14%">Location</label><br>
-			 <input type="text" name="location" id="location" placeholder="Enter location" 
-			 svalue="${entity.location}">
+			<label for="location">Location</label><br> <input type="text"
+				name="location" id="location" placeholder="Enter location"
+				value="${entity.location}">
 		</div>
 		<br>
 		<div class="design">
-			<label for="gstNo" style="margin-left: -10%">GST Number</label><br> 
-			<input type="text"
+			<label for="gstNo">GST Number</label><br> <input type="text"
 				name="gstNo" id="gstNo" placeholder="Enter GST number"
-				onblur="uniqueGSTNo()" value="${entity.gstNo}"><br>
-				 <span style='color: red;' id="gstNoExistMsg"></span>
+				onblur="uniqueGSTNo()" value="${entity.gstNo}"><br> <span
+				style='color: red;' id="gstNoExistMsg"></span>
 		</div>
 		<br>
 		<div class="design">
-			<label for="companyStartDate" >Company Start Date</label><br> 
-			<input
+			<label for="companyStartDate">Company Start Date</label><br> <input
 				type="date" name="companyStartDate" id="companyStartDate"
 				placeholder="Select start date" value="${entity.companyStartDate}">
 		</div>
 		<br>
 		<div class="design">
-			<label for="ownerName" style="margin-left: -10%">Owner Name</label><br> <input type="text"
+			<label for="ownerName">Owner Name</label><br> <input type="text"
 				name="ownerName" id="ownerName" placeholder="Enter owner name"
 				value="${entity.ownerName}">
 		</div>
 		<br>
-		<div class="design" style="width: 20%">
-			<label for="serviceType" style="margin-left: -48%">Service Type</label> <select
-				class="form-control" id="serviceType" name="serviceType">
-				<option selected value=" ">Select service type</option>
-				<option value="water"
-					<c:if test="${entity.serviceType=='water'}">selected="selected"</c:if>>Water</option>
-				<option value="milk"
-					<c:if test="${entity.serviceType=='milk'}">selected="selected"</c:if>>Milk</option>
-				<option value="coffee"
-					<c:if test="${entity.serviceType=='coffee'}">selected="selected"</c:if>>Coffee</option>
-				<option value="laptop"
-					<c:if test="${entity.serviceType=='laptop'}">selected="selected"</c:if>>Laptop</option>
-				<option value="internet"
-					<c:if test="${entity.serviceType=='internet'}">selected="selected"</c:if>>Internet</option>
-				<option value="food"
-					<c:if test="${entity.serviceType=='food'}">selected="selected"</c:if>>Food</option>
-			</select>
+		<div class="design">
+			<div class="">
+				<div>
+					<label for="serviceType">Service Type</label>
+				</div>
+				<select class="col-sm-3 " id="serviceType" name="serviceType">
+					<option selected value=" ">Select service type</option>
+					<option value="water"
+						<c:if test="${entity.serviceType=='water'}">selected="selected"</c:if>>Water</option>
+					<option value="milk"
+						<c:if test="${entity.serviceType=='milk'}">selected="selected"</c:if>>Milk</option>
+					<option value="coffee"
+						<c:if test="${entity.serviceType=='coffee'}">selected="selected"</c:if>>Coffee</option>
+					<option value="laptop"
+						<c:if test="${entity.serviceType=='laptop'}">selected="selected"</c:if>>Laptop</option>
+					<option value="internet"
+						<c:if test="${entity.serviceType=='internet'}">selected="selected"</c:if>>Internet</option>
+					<option value="food"
+						<c:if test="${entity.serviceType=='food'}">selected="selected"</c:if>>Food</option>
+				</select>
+			</div>
 		</div>
 		<br>
 
 		<div class="design">
-			<label for="contactNo" style="margin-left: -6%">Contact Number</label><br> <input
+			<label for="contactNo">Contact Number</label><br> <input
 				type="number" name="contactNo" id="contactNo"
 				placeholder="Enter contact number" onblur="uniqueContactNo()"
-				value="${entity.contactNo}"> <br>
-				<span style='color: red;'
-				id="contactNoExistMsg"></span>
+				value="${entity.contactNo}"> <br> <span
+				style='color: red;' id="contactNoExistMsg"></span>
 		</div>
 		<br>
 		<div class="design">
-			<label for="alternativeNo" style="margin-left: 1%">Alternative Contact Number</label><br>
+			<label for="alternativeNo">Alternative Contact Number</label><br>
 			<input type="number" name="alternativeNo" id="alternativeNo"
 				placeholder="Enter alternative contact number"
 				value="${entity.alternativeNo}">
 		</div>
 		<br>
 		<div class="design">
-			<label for="email" style="margin-left: -15%">Email</label><br> <input type="email"
+			<label for="email">Email</label><br> <input type="email"
 				name="email" id="email" placeholder="Enter email"
-				onblur="uniqueEmail()" value="${entity.email}"><br>
-				 <span style='color: red;' id="emailExistMsg"></span>
+				onblur="uniqueEmail()" value="${entity.email}"><br> <span
+				style='color: red;' id="emailExistMsg"></span>
 		</div>
 		<br>
 		<div class="design">
-			<label for="website" style="margin-left: -14%">Website</label><br> <input type="text"
+			<label for="website">Website</label><br> <input type="text"
 				name="website" id="website" placeholder="Enter website"
 				onblur="uniqueWebsite()" value="${entity.website}"><br>
-				<span style='color: red;' id="websiteExistMsg"></span>
+			<span style='color: red;' id="websiteExistMsg"></span>
 		</div>
 		<br>
 		<div class="design">
-			<button type="submit" class="btn btn-success" value="register" >Register</button>
+			<button type="submit" class="btn btn-success" value="register">Register</button>
 			<button type="reset" class="btn btn-danger" value="reset">Reset</button>
 		</div>
 	</form>
-</center>
+
 
 	<script>
 		function uniqueEmail() {

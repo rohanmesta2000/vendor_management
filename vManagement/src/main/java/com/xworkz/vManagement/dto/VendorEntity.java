@@ -24,9 +24,12 @@ import lombok.Data;
 @Table(name = "vmanagementRegister")
 
 @NamedQuery(name = "isExistContactGstEmailWebsite", query = "SELECT ent from  VendorEntity as ent where ent.gstNo=:gn or ent.contactNo=:cn or  ent.email=:em or ent.website=:we")
-@NamedQuery(name = "FindAllByAjax", query = "select ent from VendorEntity ent")
+@NamedQuery(name = "findAllByAjax", query = "select ent from VendorEntity ent")
 @NamedQuery(name = "updatedOtpByEmail", query = "select ent from VendorEntity ent where ent.email=:email")
 @NamedQuery(name = "isExistByEmailOtp", query = "select ent from VendorEntity ent where ent.email=:email or ent.otp=:otp")
+@NamedQuery(name = "findAllotp", query = "select otp from VendorEntity ent")
+@NamedQuery(name = "findByName", query = "select ent from VendorEntity ent where ent.name=:name")
+@NamedQuery(name = "findByEmail" ,query = "select ent from VendorEntity ent where ent.email=:email")
 public class VendorEntity {
 	@Id
 	@Column(name = "id")
@@ -47,8 +50,7 @@ public class VendorEntity {
 	@NotNull
 	@Size(min = 4, max = 30, message = " gst must be between 4 to 30 characters")
 	private String gstNo;
-    
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "companyStartDate")
 	private LocalDate companyStartDate;
@@ -92,12 +94,13 @@ public class VendorEntity {
 	@Column(name = "updateDate")
 	private LocalDate updateDate;
 
-	@Column(name="otp")
+	@Column(name = "otp")
 	private String otp;
-	
-	
-	@Column(name="otpGeneratedTime")
+
+	@Column(name = "otpGeneratedTime")
 	private LocalDateTime otpGeneratedTime;
 	
-	
+	@Column(name="status")
+	private String status;
+
 }

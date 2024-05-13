@@ -110,13 +110,13 @@ public class VendorServiceImpl implements VendorService {
 
 	@Override
 	public String findAllByAjaxEmail(String email) {
-		List<VendorEntity> listEmail = repo.FindAllByAjax();
+		List<VendorEntity> listEmail = repo.findAllByAjax();
 		if (listEmail != null) {
 			for (VendorEntity entity : listEmail) {
 				if (entity.getEmail().equals(email)) {
-					return "Email aready exist";
+					return "Email already exist";
 				} else {
-					System.out.println("Email not present");
+					System.out.println("Email present");
 				}
 
 			}
@@ -127,7 +127,7 @@ public class VendorServiceImpl implements VendorService {
 
 	@Override
 	public String findAllByAjaxGSTNo(String gstNo) {
-		List<VendorEntity> listGSTN = repo.FindAllByAjax();
+		List<VendorEntity> listGSTN = repo.findAllByAjax();
 		if (listGSTN != null) {
 			for (VendorEntity entity : listGSTN) {
 				if (entity.getGstNo().equals(gstNo)) {
@@ -142,7 +142,7 @@ public class VendorServiceImpl implements VendorService {
 
 	@Override
 	public String findAllByAjaxContactNo(Long contactNo) {
-		List<VendorEntity> listContactNo = repo.FindAllByAjax();
+		List<VendorEntity> listContactNo = repo.findAllByAjax();
 		if (listContactNo != null) {
 			for (VendorEntity entity : listContactNo) {
 				if (entity.getContactNo().equals(contactNo)) {
@@ -157,7 +157,7 @@ public class VendorServiceImpl implements VendorService {
 
 	@Override
 	public String findAllByAjaxWebsite(String website) {
-		List<VendorEntity> listWebsite = repo.FindAllByAjax();
+		List<VendorEntity> listWebsite = repo.findAllByAjax();
 		System.err.println(listWebsite);
 		if (listWebsite != null) {
 			for (VendorEntity entity : listWebsite) {

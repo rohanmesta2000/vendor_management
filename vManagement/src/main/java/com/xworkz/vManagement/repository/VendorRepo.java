@@ -9,13 +9,15 @@ public interface VendorRepo {
 
 	public VendorEntity isExist(String gstNo,Long contactNo,String email, String website);
 	
-	public List<VendorEntity> FindAllByAjax();
+	public List<VendorEntity> findAllByAjax();
 	
 	public  VendorEntity isExistByEmailOtp(String email,String otp);
 	
 	public void updatedOtpByEmail(String email,String otp);
 	
 	VendorEntity findByEmail(String email);
+	
+	List<VendorEntity> findByName(String name);
 	
 	
 }

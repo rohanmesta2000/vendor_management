@@ -69,20 +69,20 @@ public class VendorRepoImpl implements VendorRepo {
 	}
 
 	@Override
-	public List<VendorEntity> FindAllByAjax() {
+	public List<VendorEntity> findAllByAjax() {
 		EntityManager entityManager = emf.createEntityManager();
 		System.out.println("Created EM");
-		List<VendorEntity> list=new ArrayList<VendorEntity>();
+		List<VendorEntity> list = new ArrayList<VendorEntity>();
 		try {
-			Query query = entityManager.createNamedQuery("FindAllByAjax");
+			Query query = entityManager.createNamedQuery("findAllByAjax");
 			list = query.getResultList();
 
 		} catch (PersistenceException e) {
-			System.out.println("PersistenceException ruuning in FindAllByAjax" +e.getMessage());
+			System.out.println("PersistenceException ruuning in FindAllByAjax" + e.getMessage());
 		} finally {
 			entityManager.close();
 		}
-					
+
 		return list;
 	}
 
@@ -136,25 +136,47 @@ public class VendorRepoImpl implements VendorRepo {
 	}
 
 	@Override
-	public VendorEntity findByEmail(String email){
-    EntityManager em=emf.createEntityManager();
-    System.out.println("Created EM");
-     VendorEntity list=new VendorEntity();
-     try {
-    	Query query=em.createNamedQuery("findByEmail");
-    	query.setParameter("email", email);
-    	list=(VendorEntity) query.getSingleResult();
-		
-	} catch (PersistenceException pe) {
-System.out.println("Persistance in save:" +pe.getMessage() );
+	public VendorEntity findByEmail(String email) {
+		EntityManager em = emf.createEntityManager();
+		System.out.println("Created EM");
+		VendorEntity list = new VendorEntity();
+		try {
+			Query query = em.createNamedQuery("findByEmail");
+			query.setParameter("email", email);
+			list = (VendorEntity) query.getSingleResult();
 
-	}finally {
-		System.out.println("closing resources");
-		em.close();
-		System.out.println("Em Closed");
-	}
-		
+		} catch (PersistenceException pe) {
+			System.out.println("Persistance in save:" + pe.getMessage());
+
+		} finally {
+			System.out.println("closing resources");
+			em.close();
+			System.out.println("Em Closed");
+		}
+
 		return list;
+	}
+
+	@Override
+	public List<VendorEntity> findByName(String name) {
+  EntityManager em=emf.createEntityManager();
+  System.out.println("Created Em");
+  List<VendorEntity> list=null;
+  try {
+	
+	  Query query=em.createNamedQuery("findByName");
+	  query.setParameter("name", name);
+	  list=query.getResultList();
+} catch (PersistenceException pe) {
+	System.out.println("Persistance in save:" +pe.getMessage());
+	
+}
+  finally {
+	System.out.println("closing resources");
+	em.close();
+	System.out.println("EM Closed");
+}
+		return null;
 	}
 
 }
